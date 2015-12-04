@@ -1,0 +1,40 @@
+package plagiarism_detector;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Boyer_moore 
+{
+	//public static final int ALBHABET_SIZE = ...;
+	 public char[] text;
+	 public char[] pattern; 
+	 Map<Character,Integer> last = new HashMap<Character,Integer>();
+	 public int[] match;
+	 private int[] suffix;
+	 
+	 public Boyer_moore(char[] txt,char[] pat)
+	 {
+		 this.text = txt;
+		 this.pattern = pat;
+	 }
+	public void generatebadmatchTable()
+	{	int k;
+		for(k = 0; k < pattern.length - 1 ; k++ )
+		{
+			last.put(pattern[k],(pattern.length - k -1));
+		}
+		last.put(pattern[k], pattern.length - 1);
+		last.put('*',pattern.length-1 );
+		
+		System.out.println(last);
+	}		
+
+	public static void main(String args[])
+	{
+		Boyer_moore bm = new Boyer_moore("Nispand".toCharArray(),"Nispand".toCharArray());
+		bm.generatebadmatchTable();
+	}
+}
+
+
